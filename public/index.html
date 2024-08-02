@@ -1,0 +1,249 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>synthBTC: Bitcoin Price Prediction Using Synthetic Data</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="apple-mobile-web-app-title" content="synthBTC">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000" />
+    <meta name="google" value="notranslate"/>
+    <meta name="author" content="Jose Pino, @jofpin"/>
+    <meta name="description" content="It is a tool that uses advanced Monte Carlo simulations and Turbit parallel processing to create possible Bitcoin prediction scenarios."/>
+    
+    <!-- External CSS file for styling -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    
+    <!-- External JavaScript file for functionality -->
+    <script src="/assets/js/main.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/img/favicon-active.png">
+</head>
+<body>
+
+  <!-- show Notification (Processing|Successful) -->
+  <div class="synthBTC-App--OverHeader" style="display: none;">
+    <span class="synthBTC-App--OverHeader---message"></span>
+  </div>
+
+<div class="synthBTC-App">
+    <!-- button API -->
+    <a class="synthBTC-App--btnAPI" href="/api" target="_blank"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9 22h1v-2h-.989C8.703 19.994 6 19.827 6 16c0-1.993-.665-3.246-1.502-4C5.335 11.246 6 9.993 6 8c0-3.827 2.703-3.994 3-4h1V2H8.998C7.269 2.004 4 3.264 4 8c0 2.8-1.678 2.99-2.014 3L2 13c.082 0 2 .034 2 3 0 4.736 3.269 5.996 5 6zm13-11c-.082 0-2-.034-2-3 0-4.736-3.269-5.996-5-6h-1v2h.989c.308.006 3.011.173 3.011 4 0 1.993.665 3.246 1.502 4-.837.754-1.502 2.007-1.502 4 0 3.827-2.703 3.994-3 4h-1v2h1.002C16.731 21.996 20 20.736 20 16c0-2.8 1.678-2.99 2.014-3L22 11z"/></svg>OPEN API</a>
+
+    <!-- (START: Header) -->
+    <div class="synthBTC-App--Header">
+        <div class="synthBTC-App--Header---logo">
+            <svg width="225" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M214.8 21.5h-8.4V6.8h-10V0h28.4v6.8h-10v14.7ZM185.5 0h8.4v21.5h-8.4V0ZM162.8 16.4h11.3c.7 0 1.3-.7 1.3-1.4 0-.8-.6-1.5-1.3-1.5h-11.3v2.9ZM172.5 5h-9.7v3h9.7c.7 0 1.3-.8 1.3-1.5 0-.8-.6-1.5-1.3-1.5Zm6.7 5.3c2.4.8 4 2.6 4 5.3 0 3.8-3 5.8-6.8 5.8h-22V0H175c3.7 0 6.8 2 6.8 5.8 0 2-1 3.6-2.5 4.6ZM123 0h20.7a8.1 8.1 0 0 1 3.5 15.5l4.6 6H143l-4-5.3h-7.5v5.3H123V0Zm18.6 6.3h-10.2V10h10.2c.5 0 1-.2 1.3-.6.4-.3.5-.8.5-1.3 0-1-.8-1.8-1.8-1.8ZM110.9 11V0h8.4v11.5c0 8.2-6.6 10.5-14.7 10.5-8 0-14.7-2.3-14.7-10.5V0h8.4v11c0 3.5 2.9 4.1 6.3 4.2 3.4 0 6.3-.7 6.3-4.2ZM77.1 21.5h-8.3V6.8h-10V0h28.3v6.8H77v14.7Z" fill="#fff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M30.6 22H48V0H30.6v22ZM17 22h10.6V0H17v22Zm-2.9 0H8.5V0h5.7v22ZM0 22h5.7V0H0v22Z" fill="url(#a)"/><defs><linearGradient id="a" x1="28.6" y1="12.7" x2="-2" y2="12.7" gradientUnits="userSpaceOnUse"><stop stop-color="#F14257"/><stop offset=".4" stop-color="#9C1222"/><stop offset="1" stop-color="#650F19"/></linearGradient></defs></svg>
+    </div>
+      
+    <div class="synthBTC-App--Header---Stats">
+        <div class="synthBTC-App--Header---Stats---item"> 
+            <div class="synthBTC-App--Header---Stats---label">Total simulations</div>
+            <div class="synthBTC-App--Header---Stats---value" id="total-simulations">0</div>
+        </div>
+        <div class="synthBTC-App--Header---Stats---separator"></div>
+        <div class="synthBTC-App--Header---Stats---item">
+            <div class="synthBTC-App--Header---Stats---label">Simulated data</div>
+            <div class="synthBTC-App--Header---Stats---value" id="simulated-data">0</div>
+        </div>
+        <div class="synthBTC-App--Header---Stats---separator"></div>
+        <div class="synthBTC-App--Header---Stats---item">
+            <div class="synthBTC-App--Header---Stats---label">Processing time</div>
+            <div class="synthBTC-App--Header---Stats---value" id="total-processing-time">0</div>
+        </div>
+    </div>
+      
+    </div>
+    <!-- (END: Header) -->
+      
+    <!-- (START: Simulation Graph) -->
+    <div class="synthBTC-App--SimulationGraph">
+        
+        <div class="synthBTC-App--processingLoader">
+            <p class="synthBTC-App--processingLoader---text">PREPARING INTERFACE</p>
+          </div>
+
+    <svg viewBox="0 0 1008 454" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1006" height="452" x="1.5" y="1.5" fill="#000" stroke="#282828" rx="30.5" />
+      <path stroke="url(#f)" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".4" d="M874 87H132" opacity=".7" />
+      <path stroke="url(#b)" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".4" d="M132 127h742" opacity=".3" />
+      <path stroke="url(#c)" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".4" d="M132 208h742" opacity=".3" />
+      <path stroke="#fff" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".65" stroke-width=".4" d="M132 168h742M135 248h742" opacity=".3" />
+      <path stroke="#fff" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".6" stroke-width=".4" d="M135 228h742" opacity=".7" />
+      <path stroke="#fff" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".65" stroke-width=".4" d="M132 187h742" opacity=".7" />
+      <path stroke="url(#d)" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".4" d="M132 288h742" opacity=".3" />
+      <path stroke="url(#e)" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".4" d="M132 329h742" opacity=".3" />
+      <path stroke="url(#f)" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".4" d="M132 369h742" opacity=".7" />
+      <text xml:space="preserve" fill="#A1A1AA" font-family="Poppins" font-size="14" letter-spacing="0em" style="white-space:pre">
+        <tspan x="450.001" y="60.4">Current price</tspan>
+      </text>
+      <text xml:space="preserve" fill="#fff" font-family="Poppins" font-size="13" font-weight="500" letter-spacing="0em" style="white-space:pre">
+        <tspan x="480.434" y="406.55" id="current-year"></tspan>
+      </text>
+      <text xml:space="preserve" fill="#fff" font-family="Poppins" font-size="16" font-weight="500" letter-spacing="0" style="white-space:pre">
+        <tspan x="464.039" y="42.6" id="current-price">$0</tspan>
+      </text>
+      <text xml:space="preserve" fill="#fff" font-family="Poppins" font-size="16" font-weight="500" letter-spacing="0em" style="white-space:pre">
+        <tspan x="888.984" y="191.6" id="target-price">$0</tspan>
+      </text>
+      <text xml:space="preserve" fill="#fff" font-family="Poppins" font-size="16" font-weight="500" letter-spacing="0em" style="white-space:pre">
+        <tspan x="888.75" y="232.6" id="average-price">$0</tspan>
+      </text>
+      <text xml:space="preserve" fill="#fff" font-family="Poppins" font-size="16" font-weight="500" letter-spacing="0em" style="white-space:pre">
+        <tspan x="888.938" y="92.6" id="highest-price">$0</tspan>
+      </text>
+      <path class="synthBTC-App--Animations---graphicLineOne" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="m495 249.5-11.926 10.458-14.671-17.869-14.226 17.869L436.838 228l-10.225 38.486-10.225-12.027-10.225 5.499-4.001-5.499-4.001 5.499-8.447-2.406h-8.002l-9.336-3.093-15.116 8.591-4.89-8.591-9.781 15.12h-13.781l-6.669-3.093-8.891-3.436-8.002 6.529-6.669-6.529-26.674 36.425-8.892-3.436-23.562 6.872-4.89-12.714L223 317" />
+      <path class="synthBTC-App--Animations---graphicLineTwo" stroke="url(#g)" stroke-linecap="round" stroke-linejoin="round" d="m223 317-13.617 3.722-7.83-3.722-13.276 17.932-6.468-5.075h-12.596l-5.447-2.368-3.745 2.368-4.766-2.368h-7.149l-12.595 20.639h-6.809l-2.383-3.384-6.468 3.384-5.787-3.384-14.638 15.226-4.086-3.045-7.148 3.045-6.128-3.045-10.213 3.045-11.234-3.045L47 362" />
+      <text xml:space="preserve" fill="#fff" font-family="Poppins" font-size="16" font-weight="500" letter-spacing="0em" style="white-space:pre">
+        <tspan x="888.578" y="374.6" id="lowest-price">$0</tspan>
+      </text>
+      <text xml:space="preserve" fill="#FF5B5B" font-family="Poppins" font-size="12" font-weight="400" letter-spacing="0em" style="white-space:pre">
+        <tspan x="888" y="390.2" id="lowest-percentage">00.0%</tspan>
+      </text>
+      <path fill="#F14257" d="M942.634 391a1 1 0 0 0 1.732 0l3.897-6.75a1 1 0 0 0-.866-1.5h-7.794a1 1 0 0 0-.866 1.5l3.897 6.75Z" />
+      <text xml:space="preserve" fill="#4EFF95" font-family="Poppins" font-size="12" font-weight="400" letter-spacing="0em" style="white-space:pre">
+        <tspan x="888.809" y="207.2" id="target-percentage">00.0%</tspan>
+      </text>
+      <path fill="#22C55E" d="M948.366 198a1 1 0 0 0-1.732 0l-3.897 6.75a1 1 0 0 0 .866 1.5h7.794a1 1 0 0 0 .866-1.5l-3.897-6.75Z" />
+      <text xml:space="preserve" fill="#4EFF95" font-family="Poppins" font-size="12" font-weight="400" letter-spacing="0em" style="white-space:pre">
+        <tspan x="888" y="108.2" id="highest-percentage">00.0%</tspan>
+      </text>
+      <path fill="#22C55E" d="M948.366 99a1 1 0 0 0-1.732 0l-3.897 6.75a1 1 0 0 0 .866 1.5h7.794a1 1 0 0 0 .866-1.5L948.366 99Z" />
+      <text xml:space="preserve" fill="#4EFF95" font-family="Poppins" font-size="12" font-weight="400" letter-spacing="0em" style="white-space:pre">
+        <tspan x="888" y="248.2" id="average-percentage">00.0%</tspan>
+      </text>
+      <path fill="#22C55E" d="M941.366 239a1 1 0 0 0-1.732 0l-3.897 6.75a1 1 0 0 0 .866 1.5h7.794a1 1 0 0 0 .866-1.5l-3.897-6.75Z" />
+      <circle cx="872.5" cy="87.5" r="5.5" fill="#22C55E" />
+      <circle cx="872.5" cy="369.5" r="5.5" fill="#F14257" />
+      <path class="synthBTC-App--Animations---introLines" stroke="url(#h)" stroke-dasharray="7 7" stroke-linecap="round" d="M496 248c152.206 0 335.529-115.784 375-161" />
+      <path class="synthBTC-App--Animations---targetLine" stroke="url(#i)" stroke-dasharray="5 5" stroke-linecap="round" d="M504 247.5c11.048 0 282.826 10.29 369-62.5"  />
+      <path class="synthBTC-App--Animations---introLines" stroke="url(#j)" stroke-dasharray="5 5" stroke-linecap="round" d="M504 247.841c11.048 0 282.826 3.267 369-19.841" />
+      <path class="synthBTC-App--Animations---introLines" stroke="url(#k)" stroke-dasharray="5 5" stroke-linecap="round" stroke-width="2" d="M496 247.24C620.558 240.726 782.813 369 871 369" />
+      <circle class="synthBTC-App--Animations---targetPointOne" cx="872.5" cy="186.5" r="10.5" fill="#6366F1" fill-opacity=".47" />
+      <circle class="synthBTC-App--Animations---targetPointTwo" cx="872.5" cy="186.5" r="5.5" fill="#6366F1" />
+      <circle class="synthBTC-App--Animations---centralPoint" cx="496.5" cy="247" r="16" fill="#B6B6B6" fill-opacity=".24" />
+      <circle cx="496.5" cy="247" r="8" fill="#fff" />
+      <path fill="#fff" fill-opacity=".25" d="M496 74h1v312h-1z" />
+      <circle cx="872.5" cy="227.5" r="5.5" fill="#F97316" />
+      <g fill="#fff" fill-rule="evenodd" clip-rule="evenodd">
+        <path d="M790.435 40.401c-1.32-3.484-5.107-5.463-8.796-4.478-3.929 1.048-6.269 5.066-5.216 8.978 1.052 3.911 5.093 6.224 9.021 5.176a7.356 7.356 0 0 0 5.386-5.987l-1.319-.202a6.022 6.022 0 0 1-4.411 4.902c-3.224.86-6.53-1.04-7.39-4.235-.859-3.194 1.049-6.484 4.273-7.345a6.05 6.05 0 0 1 6.774 2.76h-.92v1.333h1.975a.665.665 0 0 0 .623-.902Z" />
+        <path d="M782.818 39.59h1.364v3.128l1.505 1.504-.964.965-1.905-1.905v-3.691Z" />
+      </g>
+      <g font-family="Poppins" font-size="12" letter-spacing="0em">
+        <text xml:space="preserve" fill="#fff" font-weight="400" style="white-space:pre">
+          <tspan x="891.363" y="47.2"></tspan>
+        </text>
+        <text xml:space="preserve" fill="#D3D3D3" style="white-space:pre">
+          <tspan x="797.789" y="47.2">EXECUTION TIME</tspan>
+        </text>
+        <text xml:space="preserve" fill="#fff" font-weight="500" style="white-space:pre">
+          <tspan x="893.906" y="47.2" id="total-execution-time">00:00:00:00</tspan>
+        </text>
+      </g>
+      <text xml:space="preserve" fill="#A1A1AA" font-family="Poppins" font-size="14" letter-spacing="0em" style="white-space:pre">
+        <tspan x="72.35" y="90.4">Highest</tspan>
+      </text>
+      <text xml:space="preserve" fill="#A1A1AA" font-family="Poppins" font-size="14" letter-spacing="0em" style="white-space:pre">
+        <tspan x="79.5" y="190.4">Target</tspan>
+      </text>
+      <text xml:space="preserve" fill="#A1A1AA" font-family="Poppins" font-size="14" letter-spacing="0em" style="white-space:pre">
+        <tspan x="66.211" y="231.4">Average</tspan>
+      </text>
+      <text xml:space="preserve" fill="#A1A1AA" font-family="Poppins" font-size="14" letter-spacing="0em" style="white-space:pre">
+        <tspan x="77.422" y="372.4">Lowest</tspan>
+      </text>
+      <g fill="#fff">
+        <path d="M898.818 426.636a.636.636 0 0 0-1.273 0v.286c.242-.077.5-.132.774-.171.158-.023.324-.042.499-.056v-.059ZM906.454 426.922a4.753 4.753 0 0 0-.773-.171 7.751 7.751 0 0 0-.499-.056v-.059a.636.636 0 0 1 1.272 0v.286Z" />
+        <path fill-rule="evenodd" d="M902.655 426.636h-1.31c-1.239 0-2.239 0-3.026.115-.821.119-1.501.374-2.035.951-.527.57-.754 1.284-.861 2.147-.105.84-.105 1.913-.105 3.262v.415c0 1.349 0 2.421.105 3.261.107.863.334 1.577.861 2.147.534.577 1.214.832 2.035.952.787.114 1.787.114 3.026.114h1.31c1.24 0 2.24 0 3.026-.114.821-.12 1.501-.375 2.035-.952.527-.57.754-1.284.862-2.147.104-.84.104-1.912.104-3.261v-.415c0-1.349 0-2.422-.104-3.262-.108-.863-.335-1.577-.862-2.147-.534-.577-1.214-.832-2.035-.951-.786-.115-1.786-.115-3.026-.115Zm-5.429 4.455c-.292 0-.438 0-.531.092-.093.091-.094.235-.098.524-.006.428-.006.907-.006 1.448v.327c0 1.403.001 2.396.095 3.148.092.739.263 1.149.533 1.44.263.284.622.46 1.283.556.685.1 1.592.101 2.894.101h1.209c1.302 0 2.209-.001 2.893-.101.661-.096 1.021-.272 1.284-.556.269-.291.441-.701.533-1.44.093-.752.094-1.745.094-3.148v-.327c0-.541 0-1.02-.005-1.448-.004-.289-.006-.433-.099-.524-.093-.092-.239-.092-.531-.092h-9.548Z" clip-rule="evenodd" />
+        <path fill-rule="evenodd" d="M898.659 433.636c0-.439.356-.795.796-.795h.005a.795.795 0 1 1 0 1.591h-.005a.796.796 0 0 1-.796-.796Zm2.543 0c0-.439.356-.795.795-.795h.006a.795.795 0 0 1 0 1.591h-.006a.795.795 0 0 1-.795-.796Zm2.542 0c0-.439.357-.795.796-.795h.006a.795.795 0 0 1 0 1.591h-.006a.796.796 0 0 1-.796-.796Zm-5.085 2.546c0-.44.356-.796.796-.796h.005a.796.796 0 1 1 0 1.591h-.005a.795.795 0 0 1-.796-.795Zm2.543 0c0-.44.356-.796.795-.796h.006a.795.795 0 0 1 0 1.591h-.006a.795.795 0 0 1-.795-.795Z" clip-rule="evenodd" />
+      </g>
+      <g font-family="Poppins" font-size="13" font-weight="500" letter-spacing="0em">
+        <text xml:space="preserve" fill="#fff" style="white-space:pre">
+          <tspan x="914.011" y="437.55" id="total-simulation-days">0</tspan>
+        </text>
+        <text xml:space="preserve" fill="#8D8D8D" style="white-space:pre">
+          <tspan x="938.614" y="437.55"> DAYS</tspan>
+        </text>
+      </g>
+      <path stroke="#606060" d="M1007 412H887.098a14 14 0 0 0-12.826 8.387L860 453" />
+      <path stroke="#fff" d="M0 49h231.965a14 14 0 0 0 12.721-8.153L263 1" />
+      <path class="synthBTC-App--Animations---flicker" fill="#C2283A" d="M32 19h6v13h-6z" />
+      <g font-family="Poppins" font-size="14" letter-spacing=".8">
+        <text xml:space="preserve" fill="#fff" font-weight="600" style="white-space:pre">
+          <tspan x="43.378" y="30.4">synthBTC </tspan>
+        </text>
+        <text xml:space="preserve" fill="#8D8D8D" font-weight="400" style="white-space:pre">
+          <tspan x="128.754" y="30.4">INTERFACE</tspan>
+        </text>
+      </g>
+      <defs>
+        <linearGradient id="b" x1="132" x2="874" y1="127.5" y2="127.5" gradientUnits="userSpaceOnUse">
+          <stop />
+          <stop offset=".53" stop-color="#fff" />
+          <stop offset="1" />
+        </linearGradient>
+        <linearGradient id="c" x1="132" x2="874" y1="207.5" y2="207.5" gradientUnits="userSpaceOnUse">
+          <stop />
+          <stop offset=".49" stop-color="#fff" />
+          <stop offset="1" />
+        </linearGradient>
+        <linearGradient id="d" x1="132" x2="874" y1="288.5" y2="288.5" gradientUnits="userSpaceOnUse">
+          <stop />
+          <stop offset=".445" stop-color="#fff" />
+          <stop offset="1" />
+        </linearGradient>
+        <linearGradient id="e" x1="132" x2="874" y1="329.5" y2="329.5" gradientUnits="userSpaceOnUse">
+          <stop />
+          <stop offset=".445" stop-color="#fff" />
+          <stop offset="1" />
+        </linearGradient>
+        <linearGradient id="f" x1="132" x2="874" y1="369.5" y2="369.5" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#5B5B5B" />
+          <stop offset=".445" stop-color="#fff" />
+          <stop offset="1" stop-color="#4C4C4C" />
+        </linearGradient>
+        <linearGradient id="g" x1="47" x2="223" y1="339.5" y2="339.5" gradientUnits="userSpaceOnUse">
+          <stop offset=".425" />
+          <stop offset=".705" stop-color="#2F2F2F" />
+          <stop offset="1" stop-color="#fff" />
+        </linearGradient>
+        <linearGradient id="h" x1="497.076" x2="882.328" y1="247.844" y2="121.559" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#fff" />
+          <stop offset=".425" stop-color="#22C55E" />
+        </linearGradient>
+        <linearGradient id="i" x1="497.124" x2="856.833" y1="287.722" y2="131.723" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#fff" />
+          <stop offset=".425" stop-color="#6366F1" />
+        </linearGradient>
+        <linearGradient id="j" x1="497.124" x2="646.226" y1="260.61" y2="56.921" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#fff" />
+          <stop offset=".425" stop-color="#F97316" />
+        </linearGradient>
+        <linearGradient id="k" x1="496.646" x2="879.53" y1="555.603" y2="424.692" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#fff" />
+          <stop offset=".425" stop-color="#F14257" />
+        </linearGradient>
+      </defs>
+    </svg>
+    </div>
+    <!-- (END: Simulation Graph) -->
+    
+    <!-- (START: Footer) -->
+    <div class="synthBTC-App--Footer">
+        <div class="synthBTC-App--Footer---left">
+          © 2024 CREATED BY <a class="synthBTC-App--Footer---creatorLink" href="https://x.com/jofpin"><img class="synthBTC-App--Footer---creatorAvatar" src="/assets/img/creator-jofpin.png">JOSE PINO</a>
+        </div>
+        <div class="synthBTC-App--Footer---line"></div>
+        <div class="synthBTC-App--Footer---right">
+          <span class="synthBTC-App--Footer---right----IconBTC">BITCOIN PRICE PREDICTION SIMULATOR [v1.0]</span>
+      </div>
+    </div>
+    <!-- (END: Footer) -->
+  </div>
+</body>
+</html>

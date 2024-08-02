@@ -1,0 +1,14 @@
+{
+    "simulationConfig": {
+        "turbitPower": 100,
+        "totalSimulations": 1000000,
+        "volatilityPercentage": 20,
+        "simulationDays": 365,
+        "simulationInterval": 1
+    },
+    "webConfig": {
+        "serverPort": 1337,
+        "homeEndpoint": "/",
+        "htmlFilePath": "index.html"
+    }
+}
