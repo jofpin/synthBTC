@@ -1,6 +1,6 @@
 # synthBTC
 
-![synthBTC](images/gh-cover-synthbtc.png)
+![synthBTC](images/gh-cover-synthBTC.png)
 
 ## Bitcoin Price Prediction Simulator Using Synthetic Data
 
