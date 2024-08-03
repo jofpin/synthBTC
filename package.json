@@ -21,6 +21,7 @@
   "author": "Jose Pino",
   "license": "MIT",
   "dependencies": {
+    "turbit": "^1.0.0",
     "axios": "^1.7.2",
     "cheerio": "^1.0.0-rc.12",
     "csv-parser": "^3.0.0",
