@@ -65,24 +65,19 @@ http://localhost:1337
 
 ## Configuration
 
-Customize synthBTC behavior by modifying the `config.json` file:
+The `config.json` file contains the configuration for the simulation and web server setup.
 
-```json
-{
-    "simulationConfig": {
-        "turbitPower": 100, // Enter the Turbit power here, which is the number of cores to be used for simulations
-        "totalSimulations": 1000000, // Enter the number of simulations to be performed
-        "volatilityPercentage": 20, // Enter 20% volatility here because it's an average volatility percentage obtained from the bitcoinAnalysis.js research file located in the research-script directory. Simulations are based on this argument
-        "simulationDays": 365, // Enter the number of days to simulate
-        "simulationInterval": 1 // Enter how often (in minutes) a simulation is generated
-    },
-    "webConfig": {
-        "serverPort": 1337, // Enter the port to be used for the server
-        "homeEndpoint": "/", // Enter the route to be used for the main page
-        "htmlFilePath": "index.html" // Enter the name of the file to be used for the main page
-    }
-}
-```
+#### simulationConfig
+- **turbitPower**: The number of cores to be used for simulations.
+- **totalSimulations**: The number of simulations to be performed.
+- **volatilityPercentage**: 20% volatility based on an average obtained from the `bitcoinAnalysis.js` file located in the `research-script` directory.
+- **simulationDays**: The number of days to simulate.
+- **simulationInterval**: How often (in minutes) a simulation is generated.
+
+#### webConfig
+- **serverPort**: The port to be used for the server.
+- **homeEndpoint**: The route to be used for the main page.
+- **htmlFilePath**: The name of the file to be used for the main page.
 
 ## Architecture
 
