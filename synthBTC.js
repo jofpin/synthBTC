@@ -10,7 +10,7 @@
  * @contact jose@pino.sh (https://x.com/jofpin)
  * 
  * Find the project on GitHub:
- * https://github.com/jofpin/turbit
+ * https://github.com/jofpin/synthBTC
  * 
  * ===============================
  * Copyright (c) 2024 by Jose Pino
